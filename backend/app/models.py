@@ -23,7 +23,7 @@ class Restaurant(Base):
     name = Column(String(255), nullable=False, unique=True, index=True)
     address = Column(Text, nullable=True)
     cuisine_type = Column(String(100), nullable=True, index=True)
-    metadata = Column(JSONB, nullable=True)
+    extra_data = Column(JSONB, nullable=True)
     created_at = Column(
         TIMESTAMP(timezone=True), server_default=func.now(), nullable=False
     )

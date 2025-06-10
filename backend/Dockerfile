@@ -1,14 +1,19 @@
-FROM python:3.9.23-slim-bullseye AS base
+FROM python:3.12.11-slim-bullseye AS base
 
-RUN adduser --create-home appuser
+RUN adduser --disabled-password --home /home/appuser appuser
 WORKDIR /home/appuser/app
-USER appuser
 
-COPY --chown=appuser:appuser backend/requirements.txt .
+
+COPY requirements.txt .
 # trunk-ignore(hadolint/DL3013)
 # trunk-ignore(hadolint/DL3042)
 RUN python -m pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-COPY --chown=appuser:appuser backend/app ./app
+COPY ./app ./app
+
+USER appuser
 
 EXPOSE 8080
+
+# trunk-ignore(hadolint/DL3025)
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]

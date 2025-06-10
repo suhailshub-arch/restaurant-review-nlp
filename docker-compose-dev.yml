@@ -12,5 +12,18 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  reviews-service:
+    build:
+      context: ./backend
+    container_name: reviews_service
+    # restart: always
+    env_file:
+      - ./backend/.env.dev
+    depends_on:
+      - postgres
+    ports:
+      # trunk-ignore(yamllint/quoted-strings)
+      - "8080:8080"
+
 volumes:
   postgres_data:
