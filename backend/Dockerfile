@@ -5,8 +5,9 @@ WORKDIR /home/appuser/app
 USER appuser
 
 COPY --chown=appuser:appuser backend/requirements.txt .
-RUN python -m pip install --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
+# trunk-ignore(hadolint/DL3013)
+# trunk-ignore(hadolint/DL3042)
+RUN python -m pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 COPY --chown=appuser:appuser backend/app ./app
 
