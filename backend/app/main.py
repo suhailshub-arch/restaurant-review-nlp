@@ -1,16 +1,6 @@
 from app.routers import admin, health, leaderboard, restaurants, reviews
 from fastapi import FastAPI
 
-from .db import SessionLocal
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
 
 app = FastAPI(title="Restaurant Review API")
 

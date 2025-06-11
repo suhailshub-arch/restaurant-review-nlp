@@ -1,0 +1,55 @@
+{
+  "restaurants": [
+    { "name": "Chez Gourmet",      "address": "123 Main St, Townsville",    "cuisine_type": "French" },
+    { "name": "Sushi Paradise",   "address": "456 Elm St, Villagetown",    "cuisine_type": "Japanese" },
+    { "name": "Pizzeria Bella",   "address": "789 Oak Ave, Cityville",     "cuisine_type": "Italian" },
+    { "name": "Taco Fiesta",      "address": "321 Pine Rd, Hamletburg",    "cuisine_type": "Mexican" },
+    { "name": "Curry Corner",     "address": "654 Maple St, Metropolis",   "cuisine_type": "Indian" },
+    { "name": "Burger Joint",     "address": "987 Cedar Blvd, Uptown",     "cuisine_type": "American" },
+    { "name": "Dragon’s Breath",  "address": "147 Cherry Ln, Rivercity",   "cuisine_type": "Chinese" },
+    { "name": "Mediterraneo",     "address": "258 Walnut St, Seaside",     "cuisine_type": "Mediterranean" },
+    { "name": "Green Vegan",      "address": "369 Birch Dr, Greenville",    "cuisine_type": "Vegan" },
+    {  "name": "BBQ Barn",        "address": "159 Spruce Ct, Smoketown",   "cuisine_type": "Barbecue" }
+  ],
+  "reviews": [
+    { "restaurant_id": 1,  "text": "Absolutely exquisite food and ambiance!",                  "rating": 5, "sentiment": "POSITIVE" },
+    { "restaurant_id": 1,  "text": "Service was slow, but the dishes made up for it.",          "rating": 4, "sentiment": "POSITIVE" },
+    { "restaurant_id": 1,  "text": "Overpriced and the steak was overcooked.",                 "rating": 2, "sentiment": "NEGATIVE" },
+
+    { "restaurant_id": 2,  "text": "Best sushi I've had in years.",                            "rating": 5, "sentiment": "POSITIVE" },
+    { "restaurant_id": 2,  "text": "Fresh fish, but rice was a bit too vinegary for my taste.", "rating": 4, "sentiment": "POSITIVE" },
+    { "restaurant_id": 2,  "text": "Not worth the hype—rolls were soggy.",                      "rating": 2, "sentiment": "NEGATIVE" },
+
+    { "restaurant_id": 3,  "text": "Pizza crust was perfect—crispy and flavorful.",              "rating": 5, "sentiment": "POSITIVE" },
+    { "restaurant_id": 3,  "text": "Cheese-to-sauce ratio was off, but still tasty.",            "rating": 3, "sentiment": "POSITIVE" },
+    { "restaurant_id": 3,  "text": "Terrible service, sat for 30 minutes with no breadsticks.",  "rating": 1, "sentiment": "NEGATIVE" },
+
+    { "restaurant_id": 4,  "text": "Tacos were fresh and authentic—love this place!",            "rating": 5, "sentiment": "POSITIVE" },
+    { "restaurant_id": 4,  "text": "Too much cilantro in every taco.",                         "rating": 3, "sentiment": "NEGATIVE" },
+    { "restaurant_id": 4,  "text": "Friendly staff, decent margaritas.",                        "rating": 4, "sentiment": "POSITIVE" },
+
+    { "restaurant_id": 5,  "text": "Curries were rich and perfectly spiced.",                   "rating": 5, "sentiment": "POSITIVE" },
+    { "restaurant_id": 5,  "text": "Naan was burnt on the edges.",                              "rating": 3, "sentiment": "NEGATIVE" },
+    { "restaurant_id": 5,  "text": "Great vegetarian options and flavorful sauces.",             "rating": 5, "sentiment": "POSITIVE" },
+
+    { "restaurant_id": 6,  "text": "Classic burger done right—juicy and delicious.",             "rating": 5, "sentiment": "POSITIVE" },
+    { "restaurant_id": 6,  "text": "Fries were soggy and cold.",                                  "rating": 2, "sentiment": "NEGATIVE" },
+    { "restaurant_id": 6,  "text": "Milkshake was fantastic; burger was just okay.",             "rating": 4, "sentiment": "POSITIVE" },
+
+    { "restaurant_id": 7,  "text": "Kung pao chicken had perfect heat level!",                   "rating": 5, "sentiment": "POSITIVE" },
+    { "restaurant_id": 7,  "text": "Dim sum was undercooked and doughy.",                        "rating": 2, "sentiment": "NEGATIVE" },
+    { "restaurant_id": 7,  "text": "Great sweet and sour pork, but service could improve.",       "rating": 4, "sentiment": "POSITIVE" },
+
+    { "restaurant_id": 8,  "text": "Falafel was crispy and the hummus was creamy.",               "rating": 5, "sentiment": "POSITIVE" },
+    { "restaurant_id": 8,  "text": "Tabbouleh was too salty for my taste.",                       "rating": 3, "sentiment": "NEGATIVE" },
+    { "restaurant_id": 8,  "text": "Lovely atmosphere and fresh ingredients.",                    "rating": 5, "sentiment": "POSITIVE" },
+
+    { "restaurant_id": 9,  "text": "Best vegan burger in town—so flavorful!",                     "rating": 5, "sentiment": "POSITIVE" },
+    { "restaurant_id": 9,  "text": "Salad was wilted and lacked dressing.",                       "rating": 2, "sentiment": "NEGATIVE" },
+    { "restaurant_id": 9,  "text": "Smoothie bowl was refreshing and colorful.",                  "rating": 4, "sentiment": "POSITIVE" },
+
+    { "restaurant_id": 10, "text": "Brisket was smoky and tender—amazing BBQ!",                 "rating": 5, "sentiment": "POSITIVE" },
+    { "restaurant_id": 10, "text": "Sides were bland and underseasoned.",                        "rating": 2, "sentiment": "NEGATIVE" },
+    { "restaurant_id": 10, "text": "Friendly staff and great craft beers.",                       "rating": 4, "sentiment": "POSITIVE" }
+  ]
+}
