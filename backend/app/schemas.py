@@ -42,3 +42,9 @@ class ReviewRead(BaseModel):
 class ReviewCreate(BaseModel):
     text: str
     rating: int
+
+class ReviewUpdate(BaseModel):
+    text: Optional[str] = None
+    rating: Optional[int] = None
+    sentiment: Optional[str] = None
+    sentiment_score: Optional[float] = None

@@ -1,7 +1,7 @@
 from typing import List
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
-from app.schemas import ReviewCreate, ReviewRead
+from app.schemas import ReviewCreate, ReviewRead, ReviewUpdate
 from app.db import get_db
 from app.services.review_service import ReivewService
 
@@ -50,3 +50,10 @@ def create_review(data: ReviewCreate, restaurant_id: int, db: Session = Depends(
 )
 def get_review_byId(review_id: int, db: Session = Depends(get_db)):
     return ReivewService(db).list_review_byId(review_id)
+
+@router.patch(
+    "/api/v1/reviews/{review_id}",
+    status_code=204
+)
+def update_review(review_id: int, data: ReviewUpdate, db: Session = Depends(get_db)):
+    ReivewService(db).update_review(review_id, data)

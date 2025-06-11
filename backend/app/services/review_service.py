@@ -2,7 +2,7 @@ from typing import List
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
-from app.schemas import ReviewCreate, ReviewRead
+from app.schemas import ReviewCreate, ReviewRead, ReviewUpdate
 from app.models import Review
 
 class ReivewService:
@@ -45,3 +45,13 @@ class ReivewService:
                 detail= "Review Not Found"
             )
         return review
+    
+
+    def update_review(self, review_id: int, data: ReviewUpdate) -> Review:
+        review = self.list_review_byId(review_id)
+        for field, value in data.model_dump(exclude_unset=True).items():
+            setattr(review, field, value)
+
+        self.db.commit()
+        self.db.refresh(review)
+        return
