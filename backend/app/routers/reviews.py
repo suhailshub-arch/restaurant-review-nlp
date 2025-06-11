@@ -42,3 +42,11 @@ def get_reviews(
 )
 def create_review(data: ReviewCreate, restaurant_id: int, db: Session = Depends(get_db)):
     return ReivewService(db).create_review(data, restaurant_id)
+
+@router.get(
+    "/api/v1/reviews/{review_id}",
+    status_code=200,
+    response_model=ReviewRead
+)
+def get_review_byId(review_id: int, db: Session = Depends(get_db)):
+    return ReivewService(db).list_review_byId(review_id)

@@ -11,7 +11,7 @@ class ReivewService:
 
     def list_reviews(self, restaurant_id: int, offset: int, limit: int) -> List[ReviewRead]:
         reviews = self.db.query(Review).where(Review.restaurant_id == restaurant_id).offset(offset).limit(limit).all()
-        if reviews is None:
+        if reviews == []:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="No Reviews For This Restaurant"
@@ -37,3 +37,11 @@ class ReivewService:
         return new_review
     
 
+    def list_review_byId(self, review_id: int) -> ReviewRead:
+        review = self.db.query(Review).where(Review.id==review_id).first()
+        if review is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail= "Review Not Found"
+            )
+        return review
