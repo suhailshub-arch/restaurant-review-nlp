@@ -57,3 +57,12 @@ def get_review_byId(review_id: int, db: Session = Depends(get_db)):
 )
 def update_review(review_id: int, data: ReviewUpdate, db: Session = Depends(get_db)):
     ReivewService(db).update_review(review_id, data)
+
+@router.delete(
+    "/api/v1/reviews/{review_id}",
+    response_model=dict,
+    status_code=200
+)
+def delete_review(review_id: int, db: Session = Depends(get_db)):
+    ReivewService(db).delete_review(review_id)
+    return {"message": f"Review {review_id} deleted successfully"}

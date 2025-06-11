@@ -55,3 +55,8 @@ class ReivewService:
         self.db.commit()
         self.db.refresh(review)
         return
+    
+    def delete_review(self, review_id: int):
+        review = self.list_review_byId(review_id)
+        self.db.delete(review)
+        self.db.commit()
