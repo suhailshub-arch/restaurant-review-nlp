@@ -23,3 +23,9 @@ class RestaurantCreate(BaseModel):
 
     class Config:
         orm_mode = True
+
+class RestaurantUpdate(BaseModel):
+    name: Optional[str] = None
+    address: Optional[str] = None
+    cuisine_type: Optional[str] = None
+    metadata: Optional[dict] = None

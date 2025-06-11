@@ -4,7 +4,7 @@ from sqlalchemy.exc import IntegrityError
 from fastapi import HTTPException, status
 
 from .models import Restaurant
-from .schemas import RestaurantCreate, RestaurantRead
+from .schemas import RestaurantCreate, RestaurantRead, RestaurantUpdate
 
 class RestaurantService:
     def __init__(self, db: Session):
@@ -42,4 +42,12 @@ class RestaurantService:
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Restaurant Not Found"
             )
+        return rest
+    
+    def update_restaurant(self, restaurant_id: int, data: RestaurantUpdate):
+        rest = self.get_restaurant_byId(restaurant_id)
+        for field, value in data.model_dump(exclude_unset=True).items():
+            setattr(rest, field, value)
+        self.db.commit()
+        self.db.refresh(rest)
         return rest

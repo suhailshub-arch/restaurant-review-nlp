@@ -1,7 +1,7 @@
 from typing import List
 
 from app.db import get_db
-from app.schemas import RestaurantCreate, RestaurantRead
+from app.schemas import RestaurantCreate, RestaurantRead, RestaurantUpdate
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
@@ -51,3 +51,11 @@ def create_restaurant(data: RestaurantCreate, db: Session = Depends(get_db)):
 )
 def get_restaurant(restaurant_id: int, db: Session = Depends(get_db)):
     return RestaurantService(db).get_restaurant_byId(restaurant_id)
+
+@router.patch(
+    "/{restaurant_id}",
+    status_code=204
+)
+def update_restaurant(restaurant_id: int, data: RestaurantUpdate, db: Session = Depends(get_db)):
+    RestaurantService(db).update_restaurant(restaurant_id, data)
+    return 
