@@ -44,10 +44,15 @@ class RestaurantService:
             )
         return rest
     
-    def update_restaurant(self, restaurant_id: int, data: RestaurantUpdate):
+    def update_restaurant(self, restaurant_id: int, data: RestaurantUpdate) -> Restaurant:
         rest = self.get_restaurant_byId(restaurant_id)
         for field, value in data.model_dump(exclude_unset=True).items():
             setattr(rest, field, value)
         self.db.commit()
         self.db.refresh(rest)
         return rest
+    
+    def delete_restaurant(self, restaurant_id: int) -> None:
+        rest = self.get_restaurant_byId(restaurant_id)
+        self.db.delete(rest)
+        self.db.commit()

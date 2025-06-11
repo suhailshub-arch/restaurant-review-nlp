@@ -13,7 +13,7 @@ router = APIRouter()
 @router.get("/", response_model=List[RestaurantRead])
 def list_restaurants(
     page: int = Query(1, ge=1),
-    limit: int = Query(5, ge=1, le=100),
+    limit: int = Query(25, ge=1, le=100),
     db: Session = Depends(get_db),
 ):
     offset = (page - 1) * limit
@@ -59,3 +59,12 @@ def get_restaurant(restaurant_id: int, db: Session = Depends(get_db)):
 def update_restaurant(restaurant_id: int, data: RestaurantUpdate, db: Session = Depends(get_db)):
     RestaurantService(db).update_restaurant(restaurant_id, data)
     return 
+
+@router.delete(
+    "/{restaurant_id}",
+    status_code=200,
+    response_model=dict
+)
+def delete_restaurant(restaurant_id: int, db: Session = Depends(get_db)):
+    RestaurantService(db).delete_restaurant(restaurant_id)
+    return {"message" : f"Restaurant {restaurant_id} deleted successfully"}
