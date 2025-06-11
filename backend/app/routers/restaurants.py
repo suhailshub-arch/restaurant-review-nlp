@@ -5,7 +5,7 @@ from app.schemas import RestaurantCreate, RestaurantRead, RestaurantUpdate
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
-from app.services import RestaurantService
+from app.services.restaurant_service import RestaurantService
 
 router = APIRouter()
 

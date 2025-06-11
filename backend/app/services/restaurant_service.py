@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from fastapi import HTTPException, status
 
-from .models import Restaurant
-from .schemas import RestaurantCreate, RestaurantRead, RestaurantUpdate
+from ..models import Restaurant
+from ..schemas import RestaurantCreate, RestaurantRead, RestaurantUpdate
 
 class RestaurantService:
     def __init__(self, db: Session):

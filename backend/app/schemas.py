@@ -2,6 +2,7 @@ from typing import Optional
 
 from pydantic import BaseModel, Field
 
+# RESTAURANT ------------------------------------------------------------------
 
 class RestaurantRead(BaseModel):
     id: int
@@ -12,8 +13,6 @@ class RestaurantRead(BaseModel):
     sentiment_score: int = 0   # default 0 on creation
     rank: Optional[int] = None
 
-    class Config:
-        orm_mode = True
 
 class RestaurantCreate(BaseModel):
     name: str
@@ -21,11 +20,25 @@ class RestaurantCreate(BaseModel):
     cuisine_type: Optional[str]
     extra_data: Optional[dict]
 
-    class Config:
-        orm_mode = True
 
 class RestaurantUpdate(BaseModel):
     name: Optional[str] = None
     address: Optional[str] = None
     cuisine_type: Optional[str] = None
     metadata: Optional[dict] = None
+
+
+
+# REVIEWS ------------------------------------------------------------------
+
+class ReviewRead(BaseModel):
+    id: int
+    restaurant_id: int
+    text: str
+    rating: int
+    sentiment: str
+    sentiment_score: float | None
+
+class ReviewCreate(BaseModel):
+    text: str
+    rating: int
