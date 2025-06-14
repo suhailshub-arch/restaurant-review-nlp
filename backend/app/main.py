@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 app = FastAPI(title="Restaurant Review API")
 
-app.include_router(health.router)
+app.include_router(health.router, prefix="/healthz")
 app.include_router(restaurants.router, prefix="/api/v1/restaurants")
 app.include_router(reviews.router)
 app.include_router(leaderboard.router, prefix="/api/v1/leaderboard")
