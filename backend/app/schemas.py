@@ -48,3 +48,10 @@ class ReviewUpdate(BaseModel):
     rating: Optional[int] = None
     sentiment: Optional[str] = None
     sentiment_score: Optional[float] = None
+
+# LEADERBOARD ------------------------------------------------------------------
+class LeaderboardEntry(BaseModel):
+    restaurant_id: int
+    name: str
+    sentiment_score: int
+    rank: int

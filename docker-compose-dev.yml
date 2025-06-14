@@ -10,17 +10,23 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}", "-d", "devdb"]
+      interval: 10s
+      retries: 5
 
   reviews-service:
     build:
       context: ./backend
     container_name: reviews_service
-    # restart: always
+    restart: always
     env_file:
       - ./backend/.env.dev
     depends_on:
-      - postgres
-      - redis
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     ports:
       - "8080:8080"
 
@@ -33,6 +39,10 @@ services:
     command: ["redis-server", "--save", "20", "1", "--loglevel", "warning"]
     volumes:
       - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      retries: 5
 
 volumes:
   postgres_data:

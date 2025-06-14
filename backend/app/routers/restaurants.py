@@ -1,11 +1,14 @@
 from typing import List
 
+from redis import Redis
+
 from app.db import get_db
 from app.schemas import RestaurantCreate, RestaurantRead, RestaurantUpdate
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
 from app.services.restaurant_service import RestaurantService
+from app.redis import get_redis
 
 router = APIRouter()
 
@@ -41,8 +44,11 @@ def list_restaurants(
     response_model=RestaurantRead,
     status_code=201
 )
-def create_restaurant(data: RestaurantCreate, db: Session = Depends(get_db)):
-    return RestaurantService(db).create_restaurant(data)
+def create_restaurant(data: RestaurantCreate, db: Session = Depends(get_db), redis: Redis = Depends(get_redis)):
+    created =  RestaurantService(db).create_restaurant(data)
+
+    redis.zadd("restaurant_leaderboard", {str(created.id): 0})
+    return created
 
 @router.get(
     "/{restaurant_id}",
