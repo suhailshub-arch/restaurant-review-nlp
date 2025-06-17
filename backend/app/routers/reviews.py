@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from app.schemas import ReviewCreate, ReviewRead, ReviewUpdate
 from app.db import get_db
 from app.services.review_service import ReivewService
+from app.rabbitmq_client import publish
 
 router = APIRouter()
 
@@ -41,7 +42,15 @@ def get_reviews(
     status_code=201
 )
 def create_review(data: ReviewCreate, restaurant_id: int, db: Session = Depends(get_db)):
-    return ReivewService(db).create_review(data, restaurant_id)
+    review = ReivewService(db).create_review(data, restaurant_id)
+    print(review)
+    publish("reviews_for_nlp", {
+        "review_id": review.id,
+        "restaurant_id": restaurant_id,
+        "text": review.text
+    })
+
+    return review
 
 @router.get(
     "/api/v1/reviews/{review_id}",
